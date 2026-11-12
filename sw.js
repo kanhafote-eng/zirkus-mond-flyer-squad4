@@ -1,5 +1,5 @@
 // Zirkus Mond · Flyer Squad — offline cache. Bump V on every release so phones refresh.
-const V='zm-v2.0.1',TILES='zm-tiles';
+const V='zm-v2.0.2',TILES='zm-tiles';
 const SHELL=['./','./index.html','./manifest.json','./icon-192.png','https://unpkg.com/leaflet@1.9.4/dist/leaflet.css','https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>Promise.all(SHELL.map(u=>c.add(u).catch(()=>{})))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V&&k!==TILES).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
